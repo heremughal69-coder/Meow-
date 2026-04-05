@@ -1,13 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control Tracker</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔥 Control Tracker</title>
+<style>
+  body {
+    font-family: Arial;
+    text-align: center;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: white;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    margin-top: 40px;
+    font-size: 28px;
+  }
+
+  .box {
+    margin-top: 30px;
+    font-size: 50px;
+    font-weight: bold;
+  }
+
+  button {
+    padding: 15px 30px;
+    font-size: 18px;
+    margin: 15px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+
+  .ok {
+    background: #22c55e;
+    color: white;
+  }
+
+  .fail {
+    background: #ef4444;
+    color: white;
+  }
+
+  .msg {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #94a3b8;
+  }
+</style>
 </head>
 <body>
-    <h1>Control Tracker</h1>
-    <p>Welcome to the Control Tracker application.</p>
-    <!-- Add your application content here -->
+
+<h1>🔥 My Control Tracker</h1>
+
+<div class="box" id="streak">Day 0</div>
+
+<button class="ok" onclick="success()">✔️ Control</button>
+<button class="fail" onclick="reset()">❌ Reset</button>
+
+<div class="msg" id="message">Stay Strong 💪</div>
+
+<script>
+let streak = localStorage.getItem("streak") || 0;
+document.getElementById("streak").innerText = "Day " + streak;
+
+function success() {
+  streak++;
+  localStorage.setItem("streak", streak);
+  document.getElementById("streak").innerText = "Day " + streak;
+
+  if (streak == 7) {
+    document.getElementById("message").innerText = "🔥 7 Days Completed!";
+  } else if (streak == 14) {
+    document.getElementById("message").innerText = "🚀 14 Days Strong!";
+  } else if (streak == 30) {
+    document.getElementById("message").innerText = "👑 30 Days Legend!";
+  } else {
+    document.getElementById("message").innerText = "Keep Going 💪";
+  }
+}
+
+function reset() {
+  streak = 0;
+  localStorage.setItem("streak", streak);
+  document.getElementById("streak").innerText = "Day 0";
+  document.getElementById("message").innerText = "Start Again 🔁";
+}
+</script>
+
 </body>
 </html>
